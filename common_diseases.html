@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Common Diseases</title>
+  <style>
+    body {
+    background-image: url("https://images.everydayhealth.com/images/news/misdiagnosis-800000-cases-permanent-disability-us-yearly-1440x810.png?sfvrsn=cf7f598_5");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.container {
+    width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+.select-container {
+    margin: 20px 0;
+  }
+.select {
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+.button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+.button:hover {
+    background-color: #3e8e41;
+  }
+.remedy-container {
+    display: block;
+  }
+.remedy-container p {
+    margin: 10px 0;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Common Diseases</h2>
+    <div class="select-container">
+      <select class="select" id="diseases">
+        <option value="">Select a disease</option>
+        <option value="cold">Cold</option>
+        <option value="cough">Cough</option>
+        <option value="fever">Fever</option>
+        <option value="throat">Sore Throat</option>
+        <option value="other">Others</option>
+
+      </select>
+    </div>
+    <button class="button" id="remedy-button">Remedy</button>
+    <div id="remedy-container">
+    </div>
+  </div>
+  <script>
+    const select = document.getElementById('diseases');
+    const remedyButton = document.getElementById('remedy-button');
+    const remedyContainer = document.getElementById('remedy-container');
+
+    const remedies = {
+      cold: {
+        remedy: 'Gargle saltwater, use honey in warm water with cloves and black pepper and take Vitamin C'
+      },
+      cough: {
+        remedy: 'Breathing in steam, A teaspoon or two of honey for scratchy throat,  herbal teas, like thyme, chamomile, peppermint, and liquorice root and ginger juice.'
+      },
+      fever: {
+        remedy: 'Drink plenty of fluids, Dress in light, breathable clothing and keep your room cool, try boiling 10–15 fresh basil leaves and adding them to ginger juice and honey to make a healthy drink.'
+      },
+      throat: {
+        remedy: 'Use a prescribed rescue inhaler or nebulizer if available. Sit the patient upright, loosen tight clothing, and seek immediate medical attention.'
+      },
+      other: {
+        remedy: 'Please go to a doctor immediately and stay healthy.'
+      },
+
+    };
+
+    remedyButton.addEventListener('click', () => {
+      const disease = select.value;
+      const remedyContainerDiv = document.createElement('div');
+      remedyContainerDiv.className = 'remedy-container';
+
+      if (disease) {
+        const remedy = remedies[disease].remedy;
+
+        remedyContainerDiv.innerHTML = `
+          <p>Remedy: ${remedy}</p>
+        `;
+
+        remedyContainer.innerHTML = '';
+        remedyContainer.appendChild(remedyContainerDiv);
+      } else {
+        remedyContainer.innerHTML = 'Please select a disease.';
+      }
+    });
+  </script>
+</body>
+</html>
