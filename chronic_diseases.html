@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chronic Diseases</title>
+ <style>
+  body {
+    background-image: url("https://www.edureka.co/blog/wp-content/uploads/2019/06/Artificial-Intelligence-In-Medical-Diagnosis.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.container {
+    width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+.select-container {
+    margin: 20px 0;
+  }
+.select {
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+.button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+.button:hover {
+    background-color: #3e8e41;
+  }
+.remedy-container {
+    display: block;
+  }
+.remedy-container p {
+    margin: 10px 0;
+  }
+ </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Chronic Diseases</h2>
+    <div class="select-container">
+      <select class="select" id="diseases">
+        <option value="">Select a disease</option>
+        <option value="cancer">Cancer</option>
+        <option value="diabetes">Diabetes</option>
+        <option value="mental-health">Mental Health Issues</option>
+        <option value="chronic-respiratory">Chronic Respiratory Diseases</option>
+        <option value="cardiovascular">Cardiovascular Diseases</option>
+        <option value="neuro">Neurological Disorders</option>
+        <option value="kidney">Chronic Kidney Disease</option>
+        <option value="blood-pressure">Hypertension (High Blood Pressure)</option>
+        <option value="lung-disease">Lung Disease</option>
+        <option value="stroke">Stroke</option>
+        <option value="arthritis">Arthritis</option>
+
+      </select>
+    </div>
+    <button class="button" id="emergency-remedy-button">Emergency Remedy</button>
+    <div id="emergency-remedy-container">
+    </div>
+  </div>
+  <script>
+    const select = document.getElementById('diseases');
+const emergencyRemedyButton = document.getElementById('emergency-remedy-button');
+const emergencyRemedyContainer = document.getElementById('emergency-remedy-container');
+
+const remedies = {
+  cancer: {
+    emergency: 'Severe pain, fever, bleeding.',
+    remedy: 'Contact emergency services immediately. Keep the patient comfortable and hydrated.'
+  },
+  diabetes: {
+    emergency: 'Hypoglycemia (low blood sugar) or hyperglycemia (high blood sugar).',
+    remedy: `
+      <p>Hypoglycemia Remedy: Give the patient fast-acting sugar like glucose tablets, fruit juice, or regular soda. Follow up with a snack that has both carbs and protein.</p>
+      <p>Hyperglycemia Remedy: Encourage the patient to drink water and seek medical attention immediately.</p>
+    `
+  },
+  'mental-health': {
+    emergency: 'Severe anxiety, panic attacks, suicidal thoughts.',
+    remedy: 'Stay with the person, keep them calm, listen without judgment. Contact a mental health professional or emergency services.'
+  },
+  'chronic-respiratory': {
+    emergency: 'Severe shortness of breath, wheezing, blue lips/fingertips.',
+    remedy: 'Use a prescribed rescue inhaler or nebulizer if available. Sit the patient upright, loosen tight clothing, and seek immediate medical attention.'
+  },
+  'cardiovascular': {
+    emergency: 'Chest pain, shortness of breath, fainting.',
+    remedy: 'Call emergency services immediately. Help the patient to sit in a comfortable position and stay calm. If trained, perform CPR if the patient is unresponsive and not breathing.'
+  },
+  neuro: {
+    emergency: 'Seizures, severe confusion, loss of consciousness.',
+    remedy: 'Protect the person from injury during a seizure by moving objects away. Do not restrain them or put anything in their mouth. Call emergency services.'
+  },
+  kidney: {
+    emergency: 'Severe swelling, shortness of breath, changes in urine output.',
+    remedy: ' Keep the patient comfortable, monitor fluid intake, and seek immediate medical attention.'
+  },
+  'blood-pressure': {
+    emergency: 'Severe headache, blurred vision, chest pain.',
+    remedy: 'Help the patient to relax, avoid exertion, and seek immediate medical care. Avoid salty foods and ensure they take any prescribed medication.'
+  },
+  'lung-disease': {
+    emergency: 'Severe shortness of breath, persistent coughing, chest pain.',
+    remedy: 'Use prescribed inhalers or oxygen if available. Ensure the patient is sitting upright and seek immediate medical attention.'
+  },
+  stroke: {
+    emergency: 'Sudden numbness/weakness (especially on one side), confusion, trouble speaking.',
+    remedy: 'Call emergency services immediately. Note the time of the first symptom and keep the patient as calm and still as possible.'
+  },
+  arthritis: {
+    emergency: 'Severe joint pain, swelling, immobility.',
+    remedy: ' Apply ice packs to reduce swelling, keep the joint elevated, and use over-the-counter pain medication. Seek medical advice if the condition worsens.'
+  }
+};
+
+emergencyRemedyButton.addEventListener('click', () => {
+  const disease = select.value;
+  const remedyContainer = document.createElement('div');
+  remedyContainer.className = 'emedy-container';
+
+  if (disease) {
+    const emergency = remedies[disease].emergency;
+    const remedy = remedies[disease].remedy;
+
+    remedyContainer.innerHTML = `
+      <h3>Emergency: ${emergency}</h3>
+      <p>Remedy: ${remedy}</p>
+    `;
+
+    emergencyRemedyContainer.innerHTML = '';
+    emergencyRemedyContainer.appendChild(remedyContainer);
+  } else {
+    emergencyRemedyContainer.innerHTML = 'Please select a disease.';
+  }
+});
+  </script>
+</body>
+</html>
